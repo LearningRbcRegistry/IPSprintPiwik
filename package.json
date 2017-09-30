@@ -34,6 +34,7 @@
     "@angular/tsc-wrapped": "~4.3.1",
     "@angular/upgrade": "~4.3.1",
     "angular-in-memory-web-api": "~0.4.0",
+    "angulartics2": "^2.4.0",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
     "express": "^4.16.1",
