@@ -9,6 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "start": "node server.js",
+    "serve": "ng serve",
     "test": "ng test",
     "pree2e": "webdriver-manager update",
     "postinstall": "ng build --aot -prod",
