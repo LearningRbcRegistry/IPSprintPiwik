@@ -3,5 +3,4 @@ target/
 .classpath
 .settings/
 node_modules/
-*/.idea/*
-*/.idea/*
+.idea/
