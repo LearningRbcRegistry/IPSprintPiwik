@@ -78,6 +78,6 @@
   },
   "repository": {},
   "engines": {
-    "node": "8.2.1"
+    "node": "6.10.3"
   }
 }
