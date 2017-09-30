@@ -4,32 +4,22 @@
   "private": true,
   "description": "Example project from an angular.io guide.",
   "scripts": {
-    "test:once": "karma start karma.conf.js --single-run",
-    "build": "tsc -p src/",
-    "serve": "lite-server -c=bs-config.json",
-    "prestart": "npm run build",
+    "ng": "ng",
+    "build": "ng build",
+    "lint": "ng lint",
+    "e2e": "ng e2e",
     "start": "node server.js",
-    "pretest": "npm run build",
-    "test": "concurrently \"npm run build:watch\" \"karma start karma.conf.js\"",
-    "pretest:once": "npm run build",
-    "build:watch": "tsc -p src/ -w",
-    "build:upgrade": "tsc",
-    "serve:upgrade": "http-server",
-    "build:aot": "ngc -p tsconfig-aot.json && rollup -c rollup-config.js",
-    "serve:aot": "lite-server -c bs-config.aot.json",
-    "build:babel": "babel src -d src --extensions \".es6\" --source-maps",
-    "copy-dist-files": "node ./copy-dist-files.js",
-    "i18n": "ng-xi18n",
-    "lint": "tslint ./src/**/*.ts -t verbose",
-    "preinstall": "",
-    "postinstall": "ng build --aot --target=production"
+    "test": "ng test",
+    "pree2e": "webdriver-manager update",
+    "postinstall": "ng build --aot -prod",
+    "deploy": "git push origin master && git push heroku master"
   },
   "keywords": [],
-  "author": "",
+  "author": "Antoine Bour",
   "license": "MIT",
   "dependencies": {
     "@angular/animations": "~4.3.1",
-    "@angular/cli": "1.0.3",
+    "@angular/cli": "^1.2.4",
     "@angular/common": "~4.3.1",
     "@angular/compiler": "~4.3.1",
     "@angular/compiler-cli": "~4.3.1",
@@ -43,11 +33,12 @@
     "@angular/tsc-wrapped": "~4.3.1",
     "@angular/upgrade": "~4.3.1",
     "angular-in-memory-web-api": "~0.4.0",
+    "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
     "express": "^4.16.1",
-    "rxjs": "^5.1.0",
+    "rxjs": "^5.4.1",
     "systemjs": "0.19.39",
-    "typescript": "~2.3.2",
+    "typescript": "~2.4.2",
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
@@ -77,7 +68,6 @@
     "lite-server": "^2.2.2",
     "lodash": "^4.16.2",
     "phantomjs-prebuilt": "^2.1.7",
-    "protractor": "~5.1.0",
     "rollup": "^0.41.6",
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-node-resolve": "2.0.0",
@@ -86,9 +76,8 @@
     "tslint": "^3.15.1",
     "typescript": "~2.3.2"
   },
+  "repository": {},
   "engines": {
-    "node": "6.10.3",
-    "npm": "4.1.2"
-  },
-  "repository": {}
+    "node": "8.2.1"
+  }
 }
