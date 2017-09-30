@@ -1,19 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { Router }            from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
-import { Observable }        from 'rxjs/Observable';
-import { Subject }           from 'rxjs/Subject';
-
+import {Observable} from 'rxjs/Observable';
+import {Subject} from 'rxjs/Subject';
 // Observable class extensions
 import 'rxjs/add/observable/of';
-
 // Observable operators
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 
-import { HeroSearchService } from './hero-search.service';
-import { Hero } from './hero';
+import {HeroSearchService} from './hero-search.service';
+import {Hero} from './hero';
+import {Angulartics2} from 'angulartics2';
 
 @Component({
   selector: 'hero-search',
@@ -26,8 +25,9 @@ export class HeroSearchComponent implements OnInit {
   private searchTerms = new Subject<string>();
 
   constructor(
-    private heroSearchService: HeroSearchService,
-    private router: Router) {}
+      private heroSearchService: HeroSearchService,
+      private router: Router, private angulartics2: Angulartics2) {
+  }
 
   // Push a search term into the observable stream.
   search(term: string): void {

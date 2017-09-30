@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-import { Hero }        from './hero';
-import { HeroService } from './hero.service';
+import {Hero} from './hero';
+import {HeroService} from './hero.service';
 import {Angulartics2} from 'angulartics2';
 
 @Component({
@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit {
   heroes: Hero[] = [];
 
   constructor(private heroService: HeroService, private angulartics2: Angulartics2) {
-    console.log(this.angulartics2);
+
   }
 
   ngOnInit(): void {

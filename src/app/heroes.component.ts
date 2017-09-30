@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Router }            from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
-import { Hero }                from './hero';
-import { HeroService }         from './hero.service';
+import {Hero} from './hero';
+import {HeroService} from './hero.service';
+import {Angulartics2} from 'angulartics2';
 
 @Component({
   selector: 'my-heroes',
@@ -14,8 +15,9 @@ export class HeroesComponent implements OnInit {
   selectedHero: Hero;
 
   constructor(
-    private heroService: HeroService,
-    private router: Router) { }
+      private heroService: HeroService,
+      private router: Router, private angulartics2: Angulartics2) {
+  }
 
   getHeroes(): void {
     this.heroService
