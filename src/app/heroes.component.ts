@@ -3,12 +3,14 @@ import {Router} from '@angular/router';
 
 import {Hero} from './hero';
 import {HeroService} from './hero.service';
-import {Angulartics2} from 'angulartics2';
+import {ConfigurePiwikTracker, UsePiwikTracker} from "angular2piwik";
 
 @Component({
   selector: 'my-heroes',
   templateUrl: './heroes.component.html',
-  styleUrls: [ './heroes.component.css' ]
+    styleUrls: ['./heroes.component.css'],
+    providers: [UsePiwikTracker, ConfigurePiwikTracker]
+
 })
 export class HeroesComponent implements OnInit {
   heroes: Hero[];
@@ -16,7 +18,11 @@ export class HeroesComponent implements OnInit {
 
   constructor(
       private heroService: HeroService,
-      private router: Router, private angulartics2: Angulartics2) {
+      private router: Router,
+      private cft: ConfigurePiwikTracker, private upt: UsePiwikTracker) {
+      cft.setUserId('test-123');
+      cft.setDocumentTitle();
+      upt.trackPageView();
   }
 
   getHeroes(): void {
