@@ -2,21 +2,18 @@ import {Component, OnInit} from '@angular/core';
 
 import {Hero} from './hero';
 import {HeroService} from './hero.service';
-import {ConfigurePiwikTracker, UsePiwikTracker} from "angular2piwik";
+import {Angulartics2} from 'angulartics2';
 
 @Component({
   selector: 'my-dashboard',
   templateUrl: './dashboard.component.html',
-    styleUrls: ['./dashboard.component.css'],
-    providers: [UsePiwikTracker, ConfigurePiwikTracker]
+  styleUrls: [ './dashboard.component.css' ]
 })
 export class DashboardComponent implements OnInit {
   heroes: Hero[] = [];
 
-    constructor(private heroService: HeroService, private cft: ConfigurePiwikTracker, private upt: UsePiwikTracker) {
-        cft.setUserId('test-123');
-        cft.setDocumentTitle();
-        upt.trackPageView();
+  constructor(private heroService: HeroService, private angulartics2: Angulartics2) {
+
   }
 
   ngOnInit(): void {
