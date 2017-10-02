@@ -12,7 +12,6 @@ import 'rxjs/add/operator/distinctUntilChanged';
 
 import {HeroSearchService} from './hero-search.service';
 import {Hero} from './hero';
-import {Angulartics2} from 'angulartics2';
 
 @Component({
   selector: 'hero-search',
@@ -26,7 +25,7 @@ export class HeroSearchComponent implements OnInit {
 
   constructor(
       private heroSearchService: HeroSearchService,
-      private router: Router, private angulartics2: Angulartics2) {
+      private router: Router) {
   }
 
   // Push a search term into the observable stream.
