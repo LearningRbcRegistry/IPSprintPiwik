@@ -5,7 +5,12 @@ import {Location} from '@angular/common';
 
 import {Hero} from './hero';
 import {HeroService} from './hero.service';
-import {Angulartics2} from 'angulartics2';
+import { Angulartics2Module, Angulartics2Piwik } from 'angulartics2';
+
+
+@NgModule({
+  imports: [
+    Angulartics2Module.forChild()]})
 
 @Component({
   selector: 'hero-detail',
@@ -19,23 +24,27 @@ export class HeroDetailComponent implements OnInit {
       private heroService: HeroService,
       private route: ActivatedRoute,
       private location: Location,
-      private angulartics2: Angulartics2
+      private angulartics2Piwik: Angulartics2Piwik
   ) {
-    console.log(this.angulartics2);
   }
 
   ngOnInit(): void {
     this.route.paramMap
-      .switchMap((params: ParamMap) => this.heroService.getHero(+params.get('id')))
-      .subscribe(hero => this.hero = hero);
+        .switchMap((params: ParamMap) => this.heroService.getHero(+params.get('id')))
+        .subscribe(hero => this.hero = hero);
   }
 
   save(): void {
+    console.log("SAVE DETAIL HERO")
+    this.angulartics2Piwik.eventTrack.next({action: 'hero-detail',properties: {category: 'hero detail',label: 'save'}});
+
     this.heroService.update(this.hero)
-      .then(() => this.goBack());
+        .then(() => this.goBack());
   }
 
   goBack(): void {
+
+//    this.angulartics2Piwik.exceptionTrack.next({action: 'hero-detail',properties: {category: 'hero detail',label: 'back'}})
     this.location.back();
   }
 }
