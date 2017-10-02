@@ -5,6 +5,7 @@ import {Location} from '@angular/common';
 
 import {Hero} from './hero';
 import {HeroService} from './hero.service';
+import {Angulartics2} from 'angulartics2';
 
 @Component({
   selector: 'hero-detail',
@@ -17,7 +18,10 @@ export class HeroDetailComponent implements OnInit {
   constructor(
       private heroService: HeroService,
       private route: ActivatedRoute,
-      private location: Location) {
+      private location: Location,
+      private angulartics2: Angulartics2
+  ) {
+    console.log(this.angulartics2);
   }
 
   ngOnInit(): void {
