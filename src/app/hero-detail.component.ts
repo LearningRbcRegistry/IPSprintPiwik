@@ -5,12 +5,7 @@ import {Location} from '@angular/common';
 
 import {Hero} from './hero';
 import {HeroService} from './hero.service';
-import { Angulartics2Module, Angulartics2Piwik } from 'angulartics2';
-
-
-@NgModule({
-  imports: [
-    Angulartics2Module.forChild()]})
+import {Angulartics2} from 'angulartics2';
 
 @Component({
   selector: 'hero-detail',
@@ -24,7 +19,7 @@ export class HeroDetailComponent implements OnInit {
       private heroService: HeroService,
       private route: ActivatedRoute,
       private location: Location,
-      private angulartics2Piwik: Angulartics2Piwik
+      private angulartics2Piwik: Angulartics2
   ) {
   }
 
