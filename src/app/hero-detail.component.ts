@@ -30,16 +30,22 @@ export class HeroDetailComponent implements OnInit {
   }
 
   save(): void {
-    console.log("SAVE DETAIL HERO");
-    this.angulartics2Piwik.eventTrack.next({action: 'hero-detail',properties: {category: 'hero detail',label: 'save'}});
-    console.log("SAVE DETAIL HERO AFTER");
+      console.log('SAVE DETAIL HERO');
+      this.angulartics2Piwik.eventTrack.next({
+          action: 'hero-detail',
+          properties: {category: 'hero detail', label: 'save'}
+      });
+      console.log('SAVE DETAIL HERO AFTER');
     this.heroService.update(this.hero)
         .then(() => this.goBack());
   }
 
   goBack(): void {
 
-    this.angulartics2Piwik.eventTrack.next({action: 'hero-detail',properties: {category: 'hero detail',label: 'back'}});
+      this.angulartics2Piwik.eventTrack.next({
+          action: 'hero-detail',
+          properties: {category: 'hero detail', label: 'back'}
+      });
     this.location.back();
   }
 }
