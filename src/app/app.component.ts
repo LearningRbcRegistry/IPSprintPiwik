@@ -1,5 +1,5 @@
-import { Component }          from '@angular/core';
-import { Angulartics2 } from 'angulartics2';
+import {Component} from '@angular/core';
+import {Angulartics2Piwik} from 'angulartics2';
 
 @Component({
   selector: 'my-app',
@@ -18,7 +18,10 @@ import { Angulartics2 } from 'angulartics2';
 export class AppComponent {
   title = 'Tour of Heroes';
 
-    constructor(private angulartics2: Angulartics2) {
+  constructor(
+      // inject Angulartics2Piwik to initialize it!!!
+      private angulartics2Piwik: Angulartics2Piwik) {
+      console.log('coucou');
+  }
 
-    }
 }
