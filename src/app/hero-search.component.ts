@@ -12,7 +12,9 @@ import 'rxjs/add/operator/distinctUntilChanged';
 
 import {HeroSearchService} from './hero-search.service';
 import {Hero} from './hero';
-import {Angulartics2Piwik} from "angulartics2";
+import {Angulartics2Piwik} from 'angulartics2';
+
+declare var _paq: any;
 
 @Component({
   selector: 'hero-search',
@@ -31,7 +33,6 @@ export class HeroSearchComponent implements OnInit {
 
   // Push a search term into the observable stream.
   search(term: string): void {
-      //  this.angulartics2Piwik.eventTrack()
     this.searchTerms.next(term);
   }
 
@@ -39,15 +40,32 @@ export class HeroSearchComponent implements OnInit {
     this.heroes = this.searchTerms
       .debounceTime(300)        // wait 300ms after each keystroke before considering the term
       .distinctUntilChanged()   // ignore if next search term is same as previous
-      .switchMap(term => term   // switch to new observable each time the term changes
-        // return the http search observable
-        ? this.heroSearchService.search(term)
-        // or the observable of empty heroes if there was no search term
-        : Observable.of<Hero[]>([]))
-      .catch(error => {
+        .switchMap(term => {
+            // // switch to new observable each time the term changes
+            // // return the http search observable
+            //     ? this.heroSearchService.search(term)
+            //     // or the observable of empty heroes if there was no search term
+            //     : Observable.of<Hero[]>([]));
+            let result: Observable<Hero[]> = null;
+            if (term) {
+                result = this.heroSearchService.search(term);
+            } else {
+                result = Observable.of<Hero[]>([]);
+            }
+
+            result.forEach(value => {
+                _paq.push(['trackSiteSearch',
+                    term,
+                    'Hero search',
+                    value.length
+                ]);
+                _paq.push(['trackPageView']);
+            });
+            return result;
+        }).catch(error => {
         // TODO: add real error handling
         console.log(error);
-        return Observable.of<Hero[]>([]);
+            return Observable.of<Hero[]>([]);
       });
   }
 
