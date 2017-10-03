@@ -42,17 +42,37 @@ export class HeroesComponent implements OnInit {
           this.heroes = this.heroes.filter(h => h !== hero);
           if (this.selectedHero === hero) { this.selectedHero = null; }
         });
+
+    this.pushPiwik(hero,'delete');
   }
 
   ngOnInit(): void {
     this.getHeroes();
   }
 
+  pushPiwik(hero: Hero,action: String){
+
+    console.log('PUSH PUSH');
+
+    this.angulartics2.eventTrack.next({
+      action: 'trackEvent',
+      properties: {category: 'hero detail', label: action + '-'+hero.name+'-'+hero.id}
+    });
+
+    //this.angulartics2.eventTrack.next({action: '', properties: {'Hero', 'action: '+action + '-'+hero.name+'-'+hero.id});
+
+    console.log('PUSH END');
+  }
+
   onSelect(hero: Hero): void {
+    this.pushPiwik(hero,'select');
     this.selectedHero = hero;
   }
 
   gotoDetail(): void {
+
+    this.pushPiwik(this.selectedHero,'detail');
+
     this.router.navigate(['/detail', this.selectedHero.id]);
   }
 }

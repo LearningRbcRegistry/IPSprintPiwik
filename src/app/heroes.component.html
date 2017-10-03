@@ -10,12 +10,13 @@
 <div class="container">
     <div class="col-xs-3">
         <ul class="heroes">
-            <li *ngFor="let hero of heroes" (click)="onSelect(hero)"
+            <!--"-->
+            <li *ngFor="let hero of heroes" (click)="onSelect(hero)" onclick="javascript:_paq.push(['trackEvent','get Hero Detail','get a hero detail']);"
                 [class.selected]="hero === selectedHero">
                 <span class="badge">{{hero.id}}</span>
                 <span>{{hero.name}}</span>
                 <button class="delete"
-                        (click)="delete(hero); $event.stopPropagation()">x
+                        (click)="delete(hero); $event.stopPropagation()">
                 </button>
             </li>
         </ul>
