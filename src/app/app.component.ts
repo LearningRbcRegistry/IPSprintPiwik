@@ -8,10 +8,10 @@ import {Angulartics2Piwik} from 'angulartics2';
           <h1>{{title}}</h1>
           <nav>
               <a routerLink="/dashboard" routerLinkActive="active" angulartics2On="click"
-                 angularticsEvent="MenuDashboard"
-                 angularticsCategory="Menu" [angularticsProperties]="{label: 'MenuDashboard'}">Dashboard</a>
-              <a routerLink="/heroes" routerLinkActive="active" angulartics2On="click" angularticsEvent="MenuHeroes"
-                 angularticsCategory="Menu" [angularticsProperties]="{label: 'MenuHeroes'}">Heroes</a>
+                 angularticsEvent="MenuDashboard" [angularticsProperties]="{category: 'Menu Nav', label: 'Dashboard'}">Dashboard</a>
+              <a routerLink="/heroes" routerLinkActive="active" angulartics2On="click"
+                 angularticsEvent="MenuHeroes"
+                 [angularticsProperties]="{category: 'Menu Nav', label: 'Heroes'}">Heroes</a>
           </nav>
       </div>
     <router-outlet></router-outlet>
@@ -24,7 +24,6 @@ export class AppComponent {
   constructor(
       // inject Angulartics2Piwik to initialize it!!!
       private angulartics2Piwik: Angulartics2Piwik) {
-      console.log('coucou');
   }
 
 }
