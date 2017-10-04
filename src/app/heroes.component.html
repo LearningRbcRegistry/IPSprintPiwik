@@ -1,32 +1,33 @@
 <div style="margin-left: 35px;">
     <h2>My Heroes</h2>
-    <div>
+    <div data-track-content>
         <label>Hero name:</label> <input #heroName/>
-        <button style="margin-top: 10px" (click)="add(heroName.value); heroName.value=''">
+        <button style="margin-top: 10px" (click)="add(heroName.value); heroName.value=''" data-content-piece="Add a hero button">
             Add
         </button>
     </div>
 </div>
 <div class="container">
-    <div class="col-xs-3">
+    <div class="col-xs-3" data-track-content data-content-name="Select or Delete content">
         <ul class="heroes">
-            <!--"-->
-            <li *ngFor="let hero of heroes" (click)="onSelect(hero)" onclick="javascript:_paq.push(['trackEvent','get Hero Detail','get a hero detail']);"
+            <li *ngFor="let hero of heroes" (click)="onSelect(hero)"
                 [class.selected]="hero === selectedHero">
+                <span  data-content-piece="view a hero summary">
                 <span class="badge">{{hero.id}}</span>
-                <span>{{hero.name}}</span>
+                <span>{{hero.name}}</span></span>
                 <button class="delete"
-                        (click)="delete(hero); $event.stopPropagation()">
+                        (click)="delete(hero);">
                 </button>
+
             </li>
         </ul>
     </div>
-    <div class="col-xs-9">
+    <div class="col-xs-9" data-track-content>
         <div *ngIf="selectedHero">
             <h2>
                 {{selectedHero.name | uppercase}} is my hero
             </h2>
-            <button (click)="gotoDetail()">View Details</button>
+            <button (click)="gotoDetail()" data-content-piece="go to hero detail">View Details</button>
         </div>
     </div>
 </div>
